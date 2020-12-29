@@ -1,12 +1,5 @@
-import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text, Image} from 'react-native';
 
 const Item: () => React$Node = ({item_info, hidden}) => {
   if (hidden === true) {
