@@ -16,7 +16,6 @@ const Header: () => React$Node = ({onPress}) => {
 
 const styles = StyleSheet.create({
   headerHome: {
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     elevation: 6,
@@ -28,8 +27,8 @@ const styles = StyleSheet.create({
   touchableArea: {
     alignItems: 'flex-start',
     justifyContent: 'center',
-    marginHorizontal: 20,
-    marginVertical: 16,
+    marginHorizontal: 12,
+    marginVertical: 10,
     height: 36,
     width: 36,
   },

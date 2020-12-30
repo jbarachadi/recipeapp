@@ -12,17 +12,15 @@ const App: () => React$Node = () => {
   };
 
   return (
-    <>
-      <SafeAreaView
-        style={
-          pressed
-            ? {flex: 1, backgroundColor: 'black'}
-            : {flex: 1, backgroundColor: 'white'}
-        }>
-        <Header onPress={showMenu} style={{flex: 1}} />
-        <Home />
-      </SafeAreaView>
-    </>
+    <SafeAreaView
+      style={
+        pressed
+          ? {flex: 1, backgroundColor: 'black'}
+          : {flex: 1, backgroundColor: 'white'}
+      }>
+      <Header onPress={showMenu} style={{flex: 1}} />
+      <Home />
+    </SafeAreaView>
   );
 };
 

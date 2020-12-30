@@ -70,7 +70,6 @@ const Home: () => React$Node = () => {
 const styles = StyleSheet.create({
   homePage: {
     flex: 1,
-    paddingVertical: 10,
     paddingHorizontal: 6,
   },
 });
