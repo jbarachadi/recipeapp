@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, TouchableOpacity, Text, View} from 'react-native';
 
 import Item from '../components/Item';
 
@@ -7,33 +7,43 @@ const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     title: 'First Item',
+    image: require('../images/oatmealcookies.jpg'),
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     title: 'Second Item',
+    image: require('../images/oatmealcookies.jpg'),
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     title: 'Third Item',
+    image: require('../images/oatmealcookies.jpg'),
   },
   {
     id: '58694a0f-c605-471f-bd96-145571e29d72',
     title: 'Fourth Item',
+    image: require('../images/oatmealcookies.jpg'),
   },
   {
     id: '58694a0f-c605-471f-a4f8-145571e29d72',
     title: 'Fifth Item',
+    image: require('../images/oatmealcookies.jpg'),
   },
 ];
 
-const Home: () => React$Node = () => {
+const Home: () => React$Node = ({navigation}) => {
   const numColumns = 2;
 
   const renderItem = ({item}) => {
     if (item.empty) {
       return <Item item_info={item} hidden={true} />;
     } else {
-      return <Item item_info={item} />;
+      return (
+        <Item
+          item_info={item}
+          onPress={() => navigation.navigate('Recipe', {item})}
+        />
+      );
     }
   };
 
@@ -70,7 +80,7 @@ const Home: () => React$Node = () => {
 const styles = StyleSheet.create({
   homePage: {
     flex: 1,
-    paddingHorizontal: 6,
+    padding: 6,
   },
 });
 

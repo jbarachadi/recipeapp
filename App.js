@@ -1,7 +1,11 @@
+import 'react-native-gesture-handler';
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, StatusBar, FlatList} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import Home from './pages/Home';
+import Home from './screens/Home';
+import Recipe from './screens/Recipe';
 import Header from './components/Header';
 
 const App: () => React$Node = () => {
@@ -11,6 +15,8 @@ const App: () => React$Node = () => {
     setPressed(!pressed);
   };
 
+  const Stack = createStackNavigator();
+
   return (
     <SafeAreaView
       style={
@@ -18,8 +24,12 @@ const App: () => React$Node = () => {
           ? {flex: 1, backgroundColor: 'black'}
           : {flex: 1, backgroundColor: 'white'}
       }>
-      <Header onPress={showMenu} style={{flex: 1}} />
-      <Home />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Recipe" component={Recipe} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 };

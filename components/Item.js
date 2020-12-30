@@ -1,17 +1,22 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Button,
+} from 'react-native';
 
-const Item: () => React$Node = ({item_info, hidden}) => {
+const Item: () => React$Node = ({item_info, hidden, onPress}) => {
   if (hidden === true) {
     return <View style={styles.itemInvisible} />;
   } else {
     return (
-      <TouchableOpacity style={{flex: 1}} activeOpacity={0.8}>
+      <TouchableOpacity style={{flex: 1}} activeOpacity={0.8} onPress={onPress}>
         <View style={styles.item}>
-          <Image
-            style={styles.itemImage}
-            source={require('./oatmealcookies.jpg')}
-          />
+          <Image style={styles.itemImage} source={item_info.image} />
           <View style={styles.itemTextContainer}>
             <View style={styles.itemTitleContainer}>
               <Text style={styles.itemTitle}>{item_info.title}</Text>
@@ -29,14 +34,15 @@ const Item: () => React$Node = ({item_info, hidden}) => {
 const styles = StyleSheet.create({
   item: {
     flex: 1,
-    margin: 10,
+    margin: 7,
     borderRadius: 10,
-    elevation: 6,
+    borderWidth: 1,
+    borderColor: '#ccc',
     overflow: 'hidden',
     backgroundColor: '#f1f1f1',
   },
   itemTextContainer: {
-    height: 85,
+    height: 75,
     width: '100%',
     padding: 6,
     backgroundColor: 'white',
@@ -54,12 +60,11 @@ const styles = StyleSheet.create({
     bottom: 6,
   },
   itemImage: {
-    height: 155,
+    height: 175,
     width: '100%',
   },
   itemInvisible: {
     flex: 1,
-    marginHorizontal: 6,
     backgroundColor: 'transparent',
   },
 });
