@@ -5,12 +5,22 @@ import {
   View,
   Text,
   Image,
-  SectionList,
+  ScrollView,
 } from 'react-native';
-import {DATA} from '../Data.js';
 
 const Recipe: () => React$Node = ({route}) => {
   const {info} = route.params;
+
+  const renderStep = ({item}) => {
+    return (
+      <View style={styles.recipeStep}>
+        <Text style={styles.recipeStepDetails}>
+          <Text style={{fontWeight: 'bold'}}>Step {item.number} :</Text>{' '}
+          {item.desc}
+        </Text>
+      </View>
+    );
+  };
 
   const renderIngredient = ({item}) => {
     return (
@@ -25,7 +35,7 @@ const Recipe: () => React$Node = ({route}) => {
   };
 
   return (
-    <View style={styles.recipeContainer}>
+    <ScrollView style={{flex: 1, alignContent: 'center'}}>
       <Image
         style={styles.recipeImage}
         source={require('../images/oatmealcookies.jpg')}
@@ -37,24 +47,29 @@ const Recipe: () => React$Node = ({route}) => {
         <View style={styles.recipeCategoryContainer}>
           <Text>{info.title}</Text>
         </View>
-        <Text style={styles.recipeTitle}>Ingredients</Text>
-        <View style={styles.recipeIngredientContainer}>
-          <FlatList
-            data={info.ingredients}
-            horizontal={true}
-            keyExtractor={(item) => item.key}
-            renderItem={renderIngredient}
-          />
-        </View>
       </View>
-    </View>
+      <View style={styles.recipeStepsContainer}>
+        <FlatList
+          data={info.steps}
+          keyExtractor={(item) => item.number}
+          renderItem={renderStep}
+        />
+      </View>
+      <Text style={styles.recipeTitle}>Ingredients</Text>
+      <FlatList
+        data={info.ingredients}
+        horizontal={true}
+        keyExtractor={(item) => item.key}
+        renderItem={renderIngredient}
+      />
+      <View style={styles.recipeIngredientContainer} />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   recipeContainer: {
     flex: 1,
-    alignContent: 'center',
   },
   recipeImage: {
     height: 220,
@@ -62,23 +77,19 @@ const styles = StyleSheet.create({
   },
   recipeHeadContainer: {
     flex: 1,
-    height: 85,
-    padding: 6,
-    backgroundColor: 'white',
     alignItems: 'center',
   },
   recipeTitleContainer: {
     justifyContent: 'flex-start',
   },
   recipeTitle: {
+    paddingTop: 10,
     alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 18,
   },
   recipeCategoryContainer: {},
-  recipeIngredientContainer: {
-    padding: 12,
-  },
+  recipeIngredientContainer: {},
   recipeIngredient: {
     margin: 12,
     alignItems: 'center',
@@ -96,6 +107,17 @@ const styles = StyleSheet.create({
   recipeIngredientDetails: {
     flexWrap: 'wrap',
     textAlign: 'center',
+  },
+  recipeStepsContainer: {
+    flex: 1,
+    width: '80%',
+    alignSelf: 'center',
+  },
+  recipeStep: {
+    padding: 10,
+  },
+  recipeStepDetails: {
+    textAlign: 'justify',
   },
 });
 
