@@ -35,7 +35,7 @@ const Recipe: () => React$Node = ({route}) => {
   };
 
   return (
-    <ScrollView style={{flex: 1, alignContent: 'center'}}>
+    <ScrollView style={styles.recipeContainer}>
       <Image
         style={styles.recipeImage}
         source={require('../images/oatmealcookies.jpg')}
@@ -70,6 +70,8 @@ const Recipe: () => React$Node = ({route}) => {
 const styles = StyleSheet.create({
   recipeContainer: {
     flex: 1,
+    alignContent: 'center',
+    backgroundColor: 'white',
   },
   recipeImage: {
     height: 220,
@@ -89,7 +91,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   recipeCategoryContainer: {},
-  recipeIngredientContainer: {},
+  recipeIngredientContainer: {
+  },
   recipeIngredient: {
     margin: 12,
     alignItems: 'center',
