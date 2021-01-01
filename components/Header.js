@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   header: {
     height: 56,
     backgroundColor: '#fe9635',
+    elevation: 6,
   },
 });
 
