@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 7,
     borderRadius: 10,
-    borderWidth: 1,
     borderColor: '#ccc',
     overflow: 'hidden',
+    elevation: 3,
     backgroundColor: '#f1f1f1',
   },
   itemTextContainer: {

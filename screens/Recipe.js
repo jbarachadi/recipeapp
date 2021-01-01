@@ -11,6 +11,8 @@ import {
 const Recipe: () => React$Node = ({route}) => {
   const {info} = route.params;
 
+
+
   const renderStep = ({item}) => {
     return (
       <View style={styles.recipeStep}>
@@ -44,7 +46,7 @@ const Recipe: () => React$Node = ({route}) => {
         <View style={styles.recipeTitleContainer}>
           <Text style={styles.recipeTitle}>{info.title}</Text>
         </View>
-        <View style={styles.recipeCategoryContainer}>
+        <View>
           <Text>{info.title}</Text>
         </View>
       </View>
@@ -55,14 +57,12 @@ const Recipe: () => React$Node = ({route}) => {
           renderItem={renderStep}
         />
       </View>
-      <Text style={styles.recipeTitle}>Ingredients</Text>
       <FlatList
         data={info.ingredients}
         horizontal={true}
         keyExtractor={(item) => item.key}
         renderItem={renderIngredient}
       />
-      <View style={styles.recipeIngredientContainer} />
     </ScrollView>
   );
 };
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   },
   recipeHeadContainer: {
     flex: 1,
+    paddingTop: 12,
     alignItems: 'center',
   },
   recipeTitleContainer: {
@@ -89,9 +90,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 18,
-  },
-  recipeCategoryContainer: {},
-  recipeIngredientContainer: {
   },
   recipeIngredient: {
     margin: 12,
@@ -113,6 +111,8 @@ const styles = StyleSheet.create({
   },
   recipeStepsContainer: {
     flex: 1,
+    paddingTop: 24,
+    paddingBottom: 12,
     width: '80%',
     alignSelf: 'center',
   },
