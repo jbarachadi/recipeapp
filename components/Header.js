@@ -1,29 +1,20 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {View, StyleSheet} from 'react-native';
 
-const Header: () => React$Node = ({onPress}) => {
+import HeaderButton from './HeaderButton';
+
+const Header: () => React$Node = ({onPress, navigation}) => {
   return (
-    <TouchableOpacity
-      style={styles.touchableArea}
-      activeOpacity={0.8}
-      onPress={onPress}>
-      <FontAwesomeIcon size={24} icon={faBars} style={styles.icon} />
-    </TouchableOpacity>
+    <View style={styles.header}>
+      <HeaderButton onPress={() => navigation.toggleDrawer()} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  touchableArea: {
-    justifyContent: 'center',
-    marginHorizontal: 13,
-    marginVertical: 10,
-    height: 36,
-    width: 36,
-  },
-  icon: {
-    color: 'white',
+  header: {
+    height: 56,
+    backgroundColor: '#fe9635',
   },
 });
 

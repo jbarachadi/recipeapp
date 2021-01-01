@@ -7,7 +7,7 @@ import Item from '../components/Item';
 import HeaderButton from '../components/HeaderButton';
 import Recipe from './Recipe';
 
-const Home: () => React$Node = ({navigation}) => {
+const MyRecipes: () => React$Node = ({navigation}) => {
   const numColumns = 2;
 
   const renderItem = ({item}) => {
@@ -58,7 +58,7 @@ const Home: () => React$Node = ({navigation}) => {
 
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="My recipes"
       screenOptions={{
         headerStyle: {
           backgroundColor: '#fe9635',
@@ -66,7 +66,7 @@ const Home: () => React$Node = ({navigation}) => {
         headerTintColor: '#fff',
       }}>
       <Stack.Screen
-        name="Home"
+        name="My recipes"
         component={itemList}
         options={{
           headerStyle: {
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default MyRecipes;
