@@ -5,7 +5,10 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 
 const Header: () => React$Node = ({onPress}) => {
   return (
-    <TouchableOpacity style={styles.touchableArea} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.touchableArea}
+      activeOpacity={0.8}
+      onPress={onPress}>
       <FontAwesomeIcon size={24} icon={faBars} style={styles.icon} />
     </TouchableOpacity>
   );

@@ -8,10 +8,8 @@ import {
   ScrollView,
 } from 'react-native';
 
-const Recipe: () => React$Node = ({route}) => {
+const Recipe: () => React$Node = ({route, navigation}) => {
   const {info} = route.params;
-
-
 
   const renderStep = ({item}) => {
     return (

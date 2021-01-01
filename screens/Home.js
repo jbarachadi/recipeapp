@@ -3,6 +3,11 @@ import {StyleSheet, FlatList, TouchableOpacity, Text, View} from 'react-native';
 
 import Item from '../components/Item';
 import {DATA} from '../Data.js';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import Header from '../components/Header';
+import Recipe from './Recipe';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Home: () => React$Node = ({navigation}) => {
   const numColumns = 2;
@@ -39,14 +44,52 @@ const Home: () => React$Node = ({navigation}) => {
     return DATA;
   };
 
+  const itemList = () => {
+    return (
+      <FlatList
+        data={formatData(DATA, numColumns)}
+        renderItem={renderItem}
+        numColumns={numColumns}
+        keyExtractor={(item) => item.id}
+        style={styles.homePage}
+      />
+    );
+  };
+
+  const Stack = createStackNavigator();
+
   return (
-    <FlatList
-      data={formatData(DATA, numColumns)}
-      renderItem={renderItem}
-      numColumns={numColumns}
-      keyExtractor={(item) => item.id}
-      style={styles.homePage}
-    />
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#fe9635',
+        },
+        headerTintColor: '#fff',
+      }}>
+      <Stack.Screen
+        name="Home"
+        component={itemList}
+        options={{
+          headerStyle: {
+            backgroundColor: '#fe9635',
+            elevation: 3,
+          },
+          headerTintColor: '#fff',
+          headerLeft: () => (
+            <Header onPress={() => navigation.toggleDrawer()} />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Recipe"
+        component={Recipe}
+        options={{
+          drawerLockMode: 'locked-closed',
+          enabledGesture: 'false',
+        }}
+      />
+    </Stack.Navigator>
   );
 };
 
