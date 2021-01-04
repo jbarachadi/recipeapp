@@ -15,32 +15,32 @@ const Login: () => React$Node = ({navigation}) => {
   const [login, setLogin] = useState({email: '', pwd: ''});
   const [error, setError] = useState({msg: ''});
 
-  const signIn = () =>{
+  const signIn = () => {
     auth()
-    .signInWithEmailAndPassword(login.email, login.pwd)
-    .then(() => {
-      console.log('Successfully logged in!');
-      navigation.navigate('Home')
-    })
-    .catch(error => {
-      if (error.code === 'auth/invalid-email') {
-        setError({msg:'That email address is invalid!'});
-      }
-      if (error.code === 'auth/user-not-found') {
-        setError({msg:'User not found'});
-      }
-      if (error.code === 'auth/wrong-password') {
-        setError({msg:'Wrong password'});
-      }
-    });
-  }
+      .signInWithEmailAndPassword(login.email, login.pwd)
+      .then(() => {
+        console.log('Successfully logged in!');
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        if (error.code === 'auth/invalid-email') {
+          setError({msg: 'That email address is invalid!'});
+        }
+        if (error.code === 'auth/user-not-found') {
+          setError({msg: 'User not found'});
+        }
+        if (error.code === 'auth/wrong-password') {
+          setError({msg: 'Wrong password'});
+        }
+      });
+  };
 
   return (
     <View style={{flex: 1}}>
       <Header navigation={navigation} />
       <View style={styles.inputPage}>
         <Text style={styles.inputPageTitle}>Login</Text>
-        <TextInput style={styles.errorMessage}>{error.msg}</TextInput>   
+        <Text style={styles.errorMessage}>{error.msg}</Text>
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 36,
     textAlign: 'center',
-  }, 
+  },
   errorMessage: {
     color: 'red',
     textAlign: 'center',

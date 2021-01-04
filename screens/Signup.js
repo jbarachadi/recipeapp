@@ -15,30 +15,30 @@ const Signup: () => React$Node = ({navigation}) => {
   const [login, setLogin] = useState({email: '', pwd: ''});
   const [error, setError] = useState({msg: ''});
 
-  const createUser = () =>{
+  const createUser = () => {
     auth()
-    .createUserWithEmailAndPassword(login.email, login.pwd)
-    .then(() => {
-      console.log('User account created & signed in!');
-      navigation.navigate('Home')
-    })
-    .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        setError({msg:'That email address is already in use!'});
-      }
+      .createUserWithEmailAndPassword(login.email, login.pwd)
+      .then(() => {
+        console.log('User account created & signed in!');
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          setError({msg: 'That email address is already in use!'});
+        }
 
-      if (error.code === 'auth/invalid-email') {
-        setError({msg:'That email address is invalid!'});
-      }
-    });
-  }
+        if (error.code === 'auth/invalid-email') {
+          setError({msg: 'That email address is invalid!'});
+        }
+      });
+  };
 
   return (
     <View style={{flex: 1}}>
       <Header navigation={navigation} />
       <View style={styles.inputPage}>
         <Text style={styles.inputPageTitle}>Sign up</Text>
-        <TextInput style={styles.errorMessage}>{error.msg}</TextInput>    
+        <Text style={styles.errorMessage}>{error.msg}</Text>
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -79,7 +79,6 @@ const Signup: () => React$Node = ({navigation}) => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   inputPage: {
@@ -130,6 +129,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
 
 export default Signup;
