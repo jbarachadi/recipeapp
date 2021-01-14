@@ -1,18 +1,49 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, StyleSheet, Picker, Button, TouchableOpacity} from 'react-native';
 
 import Header from '../components/Header';
+import {db} from '../config';
+import auth from '@react-native-firebase/auth';
 
 const AddRecipe: () => React$Node = ({navigation}) => {
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
   const [steps, setSteps] = useState(false);
   const [ingredients, setIngredients] = useState(false);
   const [dummy, reload] = useState(false);
-  const [recipe, setRecipe] = useState({name: '', serving: '', time: '', category: '', step:[{id:'', text:''}]});
+  const [recipe, setRecipe] = useState({name: '', serving: '', time: '', category: ''});
   const [step, setStep]= useState([])
   const [stepInput, setStepInput] = useState([]);
   const [ingredient, setIngredient]= useState([]);
   const [ingInput, setIngInput] = useState([]);
 
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  const submit = () =>{
+    db
+    .ref('/recipes')
+    .set({
+      recipe: recipe,
+      steps: step, 
+      ingredients: ingredient,
+      user: user.email
+    })
+    .then(() => console.log('Recipe created! :D'));
+    
+  }
 
   const addStepInput = (index) => {
     let key=index;
@@ -112,7 +143,7 @@ const AddRecipe: () => React$Node = ({navigation}) => {
           textContentType="text"
           keyboardType="text"
           onChangeText={(text) => setRecipe({...recipe, time:text})}
-          value={recipe.serving}
+          value={recipe.time}
         />
         <Picker
           selectedValue={recipe.category}
