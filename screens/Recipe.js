@@ -15,8 +15,8 @@ const Recipe: () => React$Node = ({route, navigation}) => {
     return (
       <View style={styles.recipeStep}>
         <Text style={styles.recipeStepDetails}>
-          <Text style={{fontWeight: 'bold'}}>Step {item.number} :</Text>{' '}
-          {item.desc}
+          <Text style={{fontWeight: 'bold'}}>Step {item.index} :</Text>{' '}
+          {item.text}
         </Text>
       </View>
     );
@@ -25,8 +25,8 @@ const Recipe: () => React$Node = ({route, navigation}) => {
   const renderIngredient = ({item}) => {
     return (
       <View style={styles.recipeIngredient}>
-        <Image source={item.image} style={styles.recipeIngredientImage} />
-        <Text style={styles.recipeIngredientName}>{item.name}</Text>
+        <Image source={require('../images/russet_potato.png')} style={styles.recipeIngredientImage} />
+        <Text style={styles.recipeIngredientName}>{item.ingredient}</Text>
         <Text style={styles.recipeIngredientDetails}>
           {item.quantity} {item.unit}
         </Text>
@@ -42,10 +42,10 @@ const Recipe: () => React$Node = ({route, navigation}) => {
       />
       <View style={styles.recipeHeadContainer}>
         <View style={styles.recipeTitleContainer}>
-          <Text style={styles.recipeTitle}>{info.title}</Text>
+          <Text style={styles.recipeTitle}>{info.name}</Text>
         </View>
         <View>
-          <Text>{info.title}</Text>
+          <Text> {info.serving} serving(s) • {info.time} </Text>
         </View>
       </View>
       <View style={styles.recipeStepsContainer}>

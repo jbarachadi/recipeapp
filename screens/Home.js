@@ -1,14 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {DATA} from '../Data.js';
+import {db} from '../config';
 import Item from '../components/Item';
 import HeaderButton from '../components/HeaderButton';
 import Recipe from './Recipe';
 
 const Home: () => React$Node = ({navigation}) => {
   const numColumns = 2;
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getData()
+    }, 500);
+  }, [data]);
+
+  const getData = () =>{
+    let DATA=[]
+    db
+    .ref('/recipes/')
+    .on('value', snapshot => {
+      let keys = Object.keys(snapshot.val());
+      keys.forEach((key) => { 
+        DATA.push(snapshot.val()[key])
+      });
+    });
+    setData(DATA)
+  }
 
   const renderItem = ({item}) => {
     if (item.empty) {
@@ -39,13 +59,13 @@ const Home: () => React$Node = ({navigation}) => {
       numberOfElementsLastRow = numberOfElementsLastRow + 1;
     }
 
-    return DATA;
+    return data;
   };
 
   const itemList = () => {
     return (
       <FlatList
-        data={formatData(DATA, numColumns)}
+        data={formatData(data, numColumns)}
         renderItem={renderItem}
         numColumns={numColumns}
         keyExtractor={(item) => item.id}

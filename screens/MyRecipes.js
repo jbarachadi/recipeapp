@@ -1,14 +1,53 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {DATA} from '../Data.js';
+import {db} from '../config';
+import auth from '@react-native-firebase/auth';
 import Item from '../components/Item';
 import HeaderButton from '../components/HeaderButton';
 import Recipe from './Recipe';
 
 const MyRecipes: () => React$Node = ({navigation}) => {
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
   const numColumns = 2;
+  const [data, setData] = useState([]);
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    if(!initializing){
+      setTimeout(() => {
+        getData()
+      }, 500);
+    }
+    return subscriber; // unsubscribe on unmount
+  },[initializing], [data]);
+
+  const getData = () =>{
+    let DATA=[]
+    db
+    .ref('/recipes/')
+    .on('value', snapshot => {
+      let keys = Object.keys(snapshot.val());
+      keys.forEach((key) => { 
+        if(snapshot.val()[key].user === user.email){
+          DATA.push(snapshot.val()[key])
+        }
+      });
+    });
+    setData(DATA)
+  }
 
   const renderItem = ({item}) => {
     if (item.empty) {
@@ -39,13 +78,13 @@ const MyRecipes: () => React$Node = ({navigation}) => {
       numberOfElementsLastRow = numberOfElementsLastRow + 1;
     }
 
-    return DATA;
+    return data;
   };
 
   const itemList = () => {
     return (
       <FlatList
-        data={formatData(DATA, numColumns)}
+        data={formatData(data, numColumns)}
         renderItem={renderItem}
         numColumns={numColumns}
         keyExtractor={(item) => item.id}

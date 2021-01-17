@@ -16,13 +16,13 @@ const Item: () => React$Node = ({item_info, hidden, onPress}) => {
     return (
       <TouchableOpacity style={{flex: 1}} activeOpacity={0.8} onPress={onPress}>
         <View style={styles.item}>
-          <Image style={styles.itemImage} source={item_info.image} />
+          <Image style={styles.itemImage} source={require('../images/oatmealcookies.jpg')} />
           <View style={styles.itemTextContainer}>
             <View style={styles.itemTitleContainer}>
-              <Text style={styles.itemTitle}>{item_info.title}</Text>
+              <Text style={styles.itemTitle}>{item_info.name}</Text>
             </View>
             <View style={styles.itemCategoryContainer}>
-              <Text>{item_info.title}</Text>
+              <Text>{item_info.category}</Text>
             </View>
           </View>
         </View>

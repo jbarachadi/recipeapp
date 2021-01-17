@@ -39,12 +39,17 @@ const AddRecipe: () => React$Node = ({navigation}) => {
     console.log('Auto generated key: ', ref.key);
     ref
     .set({
-      recipe: recipe,
+      id: ref.key,
+      name: recipe.name,
+      category: recipe.category,
+      serving: recipe.serving,
+      time: recipe.time,
       steps: step, 
       ingredients: ingredient,
       user: user.email
     })
-    .then(() => console.log('Recipe created! :D'));
+    .then(() => {console.log('Recipe created! :D'); navigation.navigate('My recipes');} );
+
   }
 
   const addStepInput = (index) => {
