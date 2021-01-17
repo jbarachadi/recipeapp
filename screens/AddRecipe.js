@@ -33,8 +33,11 @@ const AddRecipe: () => React$Node = ({navigation}) => {
   }, []);
 
   const submit = () =>{
-    db
+    const ref = db
     .ref('/recipes')
+    .push();
+    console.log('Auto generated key: ', ref.key);
+    ref
     .set({
       recipe: recipe,
       steps: step, 
@@ -42,7 +45,6 @@ const AddRecipe: () => React$Node = ({navigation}) => {
       user: user.email
     })
     .then(() => console.log('Recipe created! :D'));
-    
   }
 
   const addStepInput = (index) => {
@@ -68,7 +70,6 @@ const AddRecipe: () => React$Node = ({navigation}) => {
   }
 
   const addIngInput = (index) => {
-    console.log(ingredient)
     let measure={ingredient:'', quantity:'', unit:''}
     let key=index;
     ingInput.push(
