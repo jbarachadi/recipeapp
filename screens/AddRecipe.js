@@ -49,6 +49,7 @@ const AddRecipe: () => React$Node = ({navigation}) => {
       user: user.email
     })
     .then(() => {console.log('Recipe created! :D'); navigation.navigate('My recipes');} );
+
   }
 
   const addStepInput = (index) => {
@@ -85,8 +86,9 @@ const AddRecipe: () => React$Node = ({navigation}) => {
           onValueChange={(itemValue, itemIndex) => (measure.ingredient=itemValue)}
         >
           <Picker.Item label="Ingredient" value="" />
-          <Picker.Item label="Salt" value="Salt" />
+          <Picker.Item label="Oil" value="Oil" />
           <Picker.Item label="Potato" value="Potato" />
+          <Picker.Item label="Salt" value="Salt" />
         </Picker>
         <TextInput
           style={styles.inputRow}
@@ -94,7 +96,6 @@ const AddRecipe: () => React$Node = ({navigation}) => {
           textContentType="numeric"
           keyboardType="numeric"
           onChangeText={(text) => (measure.quantity=text)}
-          value={measure.quantity}
         />
         <Picker
           selectedValue={measure.unit}
@@ -103,8 +104,14 @@ const AddRecipe: () => React$Node = ({navigation}) => {
           onValueChange={(itemValue, itemIndex) => (measure.unit=itemValue)}
         >
           <Picker.Item label="Unit" value="" />
-          <Picker.Item label="Tea spoon" value="tsp" />
+          <Picker.Item label="Cup" value="c" />
           <Picker.Item label="Gram" value="g" />
+          <Picker.Item label="Liter" value="L" />
+          <Picker.Item label="Milligram" value="mg" />
+          <Picker.Item label="Milliliter" value="mL" />
+          <Picker.Item label="Tablespoon" value="tbsp" />
+          <Picker.Item label="Teaspoon" value="tsp" />
+          <Picker.Item label="Unit" value="u" />
         </Picker>
         </View>
     );
