@@ -10,13 +10,27 @@ import {
 } from 'react-native';
 
 const Item: () => React$Node = ({item_info, hidden, onPress}) => {
+
+  const getImage = (category) =>{
+    switch(category){
+      case 'Main Dish': return require('../images/main-dish.jpg'); break;
+      case 'Salad': return require('../images/salad.jpg'); break;
+      case 'Soup/Stew': return require('../images/soup.jpg'); break;
+      case 'Cookies': return require('../images/oatmealcookies.jpg'); break;
+      case 'Cakes': return require('../images/cake.jpg'); break;
+      case 'Juice': return require('../images/juice.jpg'); break;
+      case 'Other Desserts': return require('../images/dessert.jpg'); break;
+    }
+  }
+
   if (hidden === true) {
     return <View style={styles.itemInvisible} />;
-  } else {
+  } else{
+
     return (
       <TouchableOpacity style={{flex: 1}} activeOpacity={0.8} onPress={onPress}>
         <View style={styles.item}>
-          <Image style={styles.itemImage} source={require('../images/oatmealcookies.jpg')} />
+          <Image style={styles.itemImage} source={getImage(item_info.category)} />
           <View style={styles.itemTextContainer}>
             <View style={styles.itemTitleContainer}>
               <Text style={styles.itemTitle}>{item_info.name}</Text>

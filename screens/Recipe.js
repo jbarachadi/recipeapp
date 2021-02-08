@@ -11,6 +11,26 @@ import {
 const Recipe: () => React$Node = ({route, navigation}) => {
   const {info} = route.params;
 
+  const getImage = (category) =>{
+    switch(category){
+      case 'Main Dish': return require('../images/main-dish.jpg'); break;
+      case 'Salad': return require('../images/salad.jpg'); break;
+      case 'Soup/Stew': return require('../images/soup.jpg'); break;
+      case 'Cookies': return require('../images/oatmealcookies.jpg'); break;
+      case 'Cakes': return require('../images/cake.jpg'); break;
+      case 'Juice': return require('../images/juice.jpg'); break;
+      case 'Other Desserts': return require('../images/dessert.jpg'); break;
+    }
+  }
+
+  const getIngredient = (name) =>{
+    switch(name){
+      case 'Potato': return require('../images/russet_potato.png'); break;
+      case 'Salt': return require('../images/salt.png'); break;
+      case 'Oil': return require('../images/oil.png'); break;
+    }
+  }
+
   const renderStep = ({item}) => {
     return (
       <View style={styles.recipeStep}>
@@ -25,7 +45,7 @@ const Recipe: () => React$Node = ({route, navigation}) => {
   const renderIngredient = ({item}) => {
     return (
       <View style={styles.recipeIngredient}>
-        <Image source={require('../images/russet_potato.png')} style={styles.recipeIngredientImage} />
+        <Image source={getIngredient(item.ingredient)} style={styles.recipeIngredientImage} />
         <Text style={styles.recipeIngredientName}>{item.ingredient}</Text>
         <Text style={styles.recipeIngredientDetails}>
           {item.quantity} {item.unit}
@@ -38,7 +58,7 @@ const Recipe: () => React$Node = ({route, navigation}) => {
     <ScrollView style={styles.recipeContainer}>
       <Image
         style={styles.recipeImage}
-        source={require('../images/oatmealcookies.jpg')}
+        source={getImage(info.category)}
       />
       <View style={styles.recipeHeadContainer}>
         <View style={styles.recipeTitleContainer}>

@@ -49,7 +49,6 @@ const AddRecipe: () => React$Node = ({navigation}) => {
       user: user.email
     })
     .then(() => {console.log('Recipe created! :D'); navigation.navigate('My recipes');} );
-
   }
 
   const addStepInput = (index) => {
