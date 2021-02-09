@@ -104,17 +104,56 @@ const AddRecipe: () => React$Node = ({navigation}) => {
           onValueChange={(itemValue, itemIndex) => (measure.unit=itemValue)}
         >
           <Picker.Item label="Unit" value="" />
-          <Picker.Item label="Cup" value="c" />
+          <Picker.Item label="Cup" value="cup" />
           <Picker.Item label="Gram" value="g" />
           <Picker.Item label="Liter" value="L" />
           <Picker.Item label="Milligram" value="mg" />
           <Picker.Item label="Milliliter" value="mL" />
           <Picker.Item label="Tablespoon" value="tbsp" />
           <Picker.Item label="Teaspoon" value="tsp" />
-          <Picker.Item label="Unit" value="u" />
+          <Picker.Item label="Unit" value="unit" />
         </Picker>
         </View>
     );
+    if(key>0){
+      ingInput.splice(key-1,1, (<View key={key-1} style={{flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20}}>
+      <Picker
+        selectedValue={ingredient[key-1].ingredient}
+        style={styles.pickerRow}
+        mode='dropdown'
+        onValueChange={(itemValue, itemIndex) => (measure.ingredient=itemValue)}
+      >
+        <Picker.Item label="Ingredient" value="" />
+        <Picker.Item label="Oil" value="Oil" />
+        <Picker.Item label="Potato" value="Potato" />
+        <Picker.Item label="Salt" value="Salt" />
+      </Picker>
+      <TextInput
+        style={styles.inputRow}
+        placeholder="Quantity"
+        textContentType="numeric"
+        keyboardType="numeric"
+        onChangeText={(text) => (measure.quantity=text)}
+      />
+      <Picker
+        selectedValue={ingredient[key-1].unit}
+        style={styles.pickerRow}
+        mode='dropdown'
+        onValueChange={(itemValue, itemIndex) => (measure.unit=itemValue)}
+      >
+        <Picker.Item label="Unit" value="" />
+        <Picker.Item label="Cup" value="cup" />
+        <Picker.Item label="Gram" value="g" />
+        <Picker.Item label="Liter" value="L" />
+        <Picker.Item label="Milligram" value="mg" />
+        <Picker.Item label="Milliliter" value="mL" />
+        <Picker.Item label="Tablespoon" value="tbsp" />
+        <Picker.Item label="Teaspoon" value="tsp" />
+        <Picker.Item label="Unit" value="unit" />
+      </Picker>
+      </View>))
+    }
+    //console.log(ingInput)
     setIngredient([...ingredient, measure])
     reload(!dummy);
   }
