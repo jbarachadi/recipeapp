@@ -86,9 +86,16 @@ const AddRecipe: () => React$Node = ({navigation}) => {
           onValueChange={(itemValue, itemIndex) => (measure.ingredient=itemValue)}
         >
           <Picker.Item label="Ingredient" value="" />
+          <Picker.Item label="Carrot" value="Carrot" />
+          <Picker.Item label="Chocolate" value="Chocolate" />
+          <Picker.Item label="Flour" value="Flour" />
+          <Picker.Item label="Lettuce" value="Lettuce" />
           <Picker.Item label="Oil" value="Oil" />
+          <Picker.Item label="Orange" value="Orange" />
           <Picker.Item label="Potato" value="Potato" />
           <Picker.Item label="Salt" value="Salt" />
+          <Picker.Item label="Spaghetti" value="Spaghetti" />
+          <Picker.Item label="Tomato" value="Tomato" />
         </Picker>
         <TextInput
           style={styles.inputRow}
@@ -124,9 +131,16 @@ const AddRecipe: () => React$Node = ({navigation}) => {
         onValueChange={(itemValue, itemIndex) => (measure.ingredient=itemValue)}
       >
         <Picker.Item label="Ingredient" value="" />
+        <Picker.Item label="Carrot" value="Carrot" />
+        <Picker.Item label="Chocolate" value="Chocolate" />
+        <Picker.Item label="Flour" value="Flour" />
+        <Picker.Item label="Lettuce" value="Lettuce" />
         <Picker.Item label="Oil" value="Oil" />
+        <Picker.Item label="Orange" value="Orange" />
         <Picker.Item label="Potato" value="Potato" />
         <Picker.Item label="Salt" value="Salt" />
+        <Picker.Item label="Spaghetti" value="Spaghetti" />
+        <Picker.Item label="Tomato" value="Tomato" />
       </Picker>
       <TextInput
         style={styles.inputRow}

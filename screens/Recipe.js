@@ -25,9 +25,16 @@ const Recipe: () => React$Node = ({route, navigation}) => {
 
   const getIngredient = (name) =>{
     switch(name){
+      case 'Carrot': return require('../images/carrot.png'); break;
+      case 'Chocolate': return require('../images/chocolate.png'); break;
+      case 'Flour': return require('../images/flour.png'); break;
+      case 'Lettuce': return require('../images/lettuce.png'); break;
+      case 'Oil': return require('../images/oil.png'); break;
+      case 'Orange': return require('../images/orange.png'); break;
       case 'Potato': return require('../images/russet_potato.png'); break;
       case 'Salt': return require('../images/salt.png'); break;
-      case 'Oil': return require('../images/oil.png'); break;
+      case 'Spaghetti': return require('../images/spaghetti.png'); break;
+      case 'Tomato': return require('../images/tomato.png'); break;
     }
   }
 
@@ -35,7 +42,7 @@ const Recipe: () => React$Node = ({route, navigation}) => {
     return (
       <View style={styles.recipeStep}>
         <Text style={styles.recipeStepDetails}>
-          <Text style={{fontWeight: 'bold'}}>Step {item.index} :</Text>{' '}
+          <Text style={{fontWeight: 'bold'}}>Step {item.index+1} :</Text>{' '}
           {item.text}
         </Text>
       </View>
