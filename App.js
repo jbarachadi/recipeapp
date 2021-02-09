@@ -13,7 +13,8 @@ import Signup from './screens/Signup';
 
 const App: () => React$Node = () => {
   const Drawer = createDrawerNavigator();
-
+  console.disableYellowBox = true;
+  
   return (
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
